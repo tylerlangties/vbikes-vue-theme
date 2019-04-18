@@ -1,14 +1,51 @@
 <template>
-  <div class="header">Hello im a header</div>
+  <div>
+    <b-navbar class="nav" toggleable="lg" type="dark" variant="dark">
+      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item>
+            <router-link :to="{ name: 'Home'}">Home</router-link>
+          </b-nav-item>
+          <b-nav-item v-for="page in somePages(limit)" :key="page.id">
+            <router-link :to="page.slug">{{ page.title.rendered }}</router-link>
+          </b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form>
+            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+          </b-nav-form>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  props: ["limit"],
+  computed: {
+    ...mapGetters({
+      somePages: "somePages",
+      allPagesLoaded: "allPagesLoaded"
+    })
+  }
+};
 </script>
 
-<style scoped lang="scss">
-.header {
-  color: blue;
-  top: 0;
+<style scoped>
+a {
+  color: white;
+}
+.nav {
+  /* position: fixed;
+  z-index: 20;
+  width: 100%; */
 }
 </style>

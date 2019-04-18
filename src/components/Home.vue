@@ -1,5 +1,8 @@
 <template>
-  <div>kewl stuff</div>
+  <div>
+    <h1>cool stuff</h1>
+    <!-- <img :src=" $ASSET_DIR + '/title-image.804266eb.jpeg'"> -->
+  </div>
 </template>
 
 <script>
