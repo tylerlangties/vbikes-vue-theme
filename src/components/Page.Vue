@@ -1,22 +1,21 @@
 <template>
   <div>
-    <!-- <Titlebanner :title="pageContent.title.rendered"></Titlebanner> -->
     <template v-if="allPagesLoaded">
+      <Banner :title="pageContent.title.rendered"></Banner>
       <div class="content-body" v-html="pageContent.content.rendered"></div>
-      <div class="content-body"></div>
+      <div class="content-body">{{message}}</div>
     </template>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
+import Banner from "./Banner.vue";
 export default {
   name: "page",
   data() {
     return {
-      url: this.$route.params
-      // id: this.pageContent.id
+      id: this.pageContent.id
     };
   },
   computed: {
@@ -24,22 +23,19 @@ export default {
       page: "page",
       allPagesLoaded: "allPagesLoaded"
     }),
-
     pageContent() {
       return this.page(this.$route.params.pageSlug);
     }
   },
   watch: {
-    $route(to, from) {
+    $route(to, from, next) {
       console.log("change");
-      if (this.pageContent.slug === "gallery") {
-        console.log("true");
-        this.$router.go();
-      }
     }
   },
 
-  components: {}
+  components: {
+    Banner
+  }
 };
 </script>
 
@@ -47,6 +43,6 @@ export default {
 .content-body {
   max-width: 1044px;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 4rem 0.5rem;
 }
 </style>

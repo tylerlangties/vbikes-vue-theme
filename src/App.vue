@@ -12,6 +12,9 @@ export default {
   data() {
     return {};
   },
+  beforeRouteUpdate(to, from, next) {
+    console.log("beforeRouteUpdate");
+  },
   components: {
     Header
   }

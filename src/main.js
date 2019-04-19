@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import App from './App'
 import BootstrapVue from 'bootstrap-vue'
+import VueCarousel from 'vue-carousel'
 
+Vue.use(VueCarousel)
 Vue.use(BootstrapVue)
+
 import router from './router'
 import store from './store'
 
