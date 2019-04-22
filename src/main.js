@@ -8,6 +8,7 @@ Vue.use(BootstrapVue)
 
 import router from './router'
 import store from './store'
+import * as types from './store/mutations'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -20,6 +21,7 @@ new Vue({
   store,
   render: h => h(App),
   created() {
+    this.$store.commit(types.RESET_LOADING_PROGRESS)
     this.$store.dispatch('getAllPages')
   }
 })

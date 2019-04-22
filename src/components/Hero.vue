@@ -55,7 +55,7 @@ export default {};
     flex-direction: column;
     padding: 10px;
     position: absolute;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -67,6 +67,7 @@ export default {};
     color: #212121;
     font-size: 26px;
     border-radius: 5px;
+    margin: 20px 0;
   }
   .intro-detail {
     max-width: 600px;
@@ -74,6 +75,7 @@ export default {};
     text-align: center;
   }
   .intro-buttons {
+    margin-top: 10px;
     .button-blue {
       background: #2980b9;
       border: 2px solid #2980b9;

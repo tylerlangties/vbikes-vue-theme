@@ -2,8 +2,9 @@
   <div>
     <template v-if="allPagesLoaded">
       <Banner :title="pageContent.title.rendered"></Banner>
-      <div class="content-body" v-html="pageContent.content.rendered"></div>
-      <div class="content-body">{{message}}</div>
+      <div class="container">
+        <div class="content-body" v-html="pageContent.content.rendered"></div>
+      </div>
     </template>
   </div>
 </template>
@@ -15,7 +16,7 @@ export default {
   name: "page",
   data() {
     return {
-      id: this.pageContent.id
+      id: null
     };
   },
   computed: {
@@ -41,7 +42,6 @@ export default {
 
 <style scoped>
 .content-body {
-  max-width: 1044px;
   margin: 0 auto;
   padding: 4rem 0.5rem;
 }

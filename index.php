@@ -10,7 +10,9 @@
 
 <body>
   <div id="app"></div>
-  <?php wp_footer(); ?>
+  <?php
+  get_footer();
+?>
 </body>
 
 </html>
