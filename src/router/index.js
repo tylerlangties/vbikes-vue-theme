@@ -4,6 +4,7 @@ import Page from '../components/Page.vue'
 import Home from '../components/Home.vue'
 import Post from '../components/Post.vue'
 import Blog from '../components/Blog.vue'
+import ContactPage from '../components/ContactPage.vue'
 import post from '../store/modules/post'
 
 Vue.use(Router)
@@ -28,7 +29,11 @@ export default new Router({
       }
     },
     {
-      // Assuming you're using the default permalink structure for posts
+      path: '/contact',
+      name: 'Contact',
+      component: ContactPage
+    },
+    {
       path: '/:year/:month/:day/:postSlug',
       name: 'Post',
       component: Post

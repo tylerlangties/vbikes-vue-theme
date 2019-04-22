@@ -38,3 +38,39 @@ function villagebikes_post_thumbnails() {
     add_theme_support( 'post-thumbnails' );
 }
 add_action( 'after_setup_theme', 'villagebikes_post_thumbnails' );
+
+function api_endpoints() {
+	register_rest_route('send-contact-form/v1', '/contact/', [
+		'methods' => 'POST',
+		'callback' => 'send_contact_form'
+	]);
+}
+
+add_action( 'rest_api_init', 'api_endpoints' );
+
+function send_contact_form (WP_REST_Request $request ) {
+	$full_name = sanitize_text_field( trim( $request['full_name'] ) );
+	$email = sanitize_email( trim( $request['email'] ) );
+	$body = wp_kses_post( trim ($request['body'] ) );
+
+	$errors = [];
+	if( empty( $full_name ) ) {
+		$errors[] = "Name is required";
+	}
+	if( empty( $email ) ) {
+		$errors[] = "Valid email is required";
+	}
+	if( empty( $body ) ) {
+		$errors[] = "Message is required";
+	}
+
+	if (count( $errors ) ) {
+		return new WP_Error( 'contact_form_errors', $errors, ['status' => 422 ] );
+	}
+
+	$message = "Full name: {$full_name}. <br> From: {$email}. <br> Message: $body";
+
+	$headers = ['Content-Type: text/html; charset=UTF-8'];
+	wp_mail( 'tylerlangties@gmail.com', 'contact form', $message, $headers );
+	return 'success';
+}
