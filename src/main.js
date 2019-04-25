@@ -2,9 +2,11 @@ import Vue from 'vue'
 import App from './App'
 import BootstrapVue from 'bootstrap-vue'
 import VueCarousel from 'vue-carousel'
+import DateFilter from './filters/date'
 
 Vue.use(VueCarousel)
 Vue.use(BootstrapVue)
+Vue.filter('date', DateFilter)
 
 import router from './router'
 import store from './store'
@@ -22,6 +24,7 @@ new Vue({
   render: h => h(App),
   created() {
     this.$store.commit(types.RESET_LOADING_PROGRESS)
+    this.$store.dispatch('getAllCategories')
     this.$store.dispatch('getAllPages')
   }
 })

@@ -46,14 +46,25 @@ export default {
     justify-content: space-between;
     max-width: 1044px;
     width: 1044px;
+    padding: 0 1rem;
+    @media (max-width: 776px) {
+      justify-content: center;
+    }
     &_title {
       width: 250px;
       margin: 0;
       padding: 0;
       color: white;
+      @media (max-width: 776px) {
+        font-size: 24px;
+        text-align: center;
+      }
     }
     &_breadcrumb {
       color: white;
+      @media (max-width: 776px) {
+        display: none;
+      }
     }
   }
 }

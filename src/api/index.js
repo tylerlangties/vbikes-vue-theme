@@ -53,5 +53,16 @@ export default {
       .catch(e => {
         cb(e)
       })
+  },
+
+  getUsers(cb) {
+    axios
+      .get(SETTINGS.API_BASE_PATH + 'users')
+      .then(response => {
+        cb(response.data)
+      })
+      .catch(e => {
+        cb(e)
+      })
   }
 }
