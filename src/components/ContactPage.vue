@@ -1,63 +1,49 @@
 <template>
-  <div class="container">
-    <!-- <div v-if="!submitted">
-      <h2>Contact form</h2>
-      <ul class="errors" v-if="errors.length">
-        <li v-for="error in errors">{{error}}</li>
-      </ul>
-      <form>
-        <div class="field">
-          <div class="control">
-            <input v-model="form.full_name" type="text" placeholder="name">
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <input v-model="form.email" type="email" placeholder="email">
-          </div>
-        </div>
-        <div class="field">
-          <div class="control">
-            <textarea v-model="form.body" class="textarea" rows="7" placeholder="What do you need?"></textarea>
-          </div>
-        </div>
-        <div class="field">
-          <button @click.prevent="submitForm" class="button">Send</button>
-        </div>
-      </form>
-    </div>-->
-    <!-- <div v-else>Your form has been submitted! thanks</div> -->
-    <div id="contact-form" class="contact-form">
-      <h1 class="contact-form_title">Contact Form</h1>
-      <div class="separator"></div>
+  <div>
+    <Banner title="Contact"></Banner>
+    <div class="container">
+      <div v-if="!submitted">
+        <div id="contact-form" class="contact-form">
+          <h1 class="contact-form_title">Contact Form</h1>
+          <ul class="errors" v-if="errors.length">
+            <li v-for="error in errors" :key="error">{{error}}</li>
+          </ul>
+          <div class="separator"></div>
 
-      <form class="form" @submit="onSubmit">
-        <input
-          required
-          name="name"
-          v-model="form.full_name"
-          placeholder="Name"
-          type="text"
-          autocomplete="off"
-        >
-        <input
-          required
-          name="email"
-          v-model="form.email"
-          placeholder="E-mail"
-          type="email"
-          autocomplete="off"
-        >
-        <textarea name="message" v-model="form.body" rows="4" placeholder="Message"></textarea>
-        <button class="button">Send</button>
-      </form>
+          <form class="form" @submit.prevent="submitForm">
+            <input
+              required
+              name="name"
+              v-model="form.full_name"
+              placeholder="Name"
+              type="text"
+              autocomplete="off"
+            >
+            <input
+              required
+              name="email"
+              v-model="form.email"
+              placeholder="E-mail"
+              type="email"
+              autocomplete="off"
+            >
+            <textarea name="message" v-model="form.body" rows="4" placeholder="Message"></textarea>
+            <button class="button">Send</button>
+          </form>
+        </div>
+      </div>
+      <div v-else>Your form has been submitted! thanks</div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Banner from "./Banner.vue";
 export default {
+  components: {
+    Banner
+  },
   data() {
     return {
       url: "http://localhost:8888/wp-json/send-contact-form/v1/contact",
@@ -86,6 +72,7 @@ export default {
         });
     }
   },
+
   mounted() {}
 };
 </script>
@@ -93,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 .contact-form {
   font-family: 16px;
-  margin: 0 auto;
+  margin: 4rem auto;
   max-width: 600px;
   width: 100%;
 }
@@ -130,8 +117,8 @@ export default {
 }
 
 .contact-form .button {
-  background: #da552f;
-  border: solid 1px #da552f;
+  background: #2980b9;
+  border: solid 1px #2980b9;
   color: white;
   cursor: pointer;
   padding: 10px 50px;

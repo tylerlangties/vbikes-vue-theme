@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="{hidden: isLoading}">
     <Navigation :menu="menu"/>
   </header>
 </template>
@@ -8,6 +8,7 @@
 import axios from "axios";
 import Navigation from "./Navigation.vue";
 export default {
+  props: ["isLoading"],
   data() {
     return {
       menu: false
@@ -33,4 +34,15 @@ export default {
 </script>
 
 <style>
+.hidden {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  transition: all 500ms ease;
+}
 </style>

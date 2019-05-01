@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Header></Header>
+  <div class="main-content">
+    <Header :isLoading="isLoading"></Header>
     <transition
       name="loader-animation"
       enter-active-class="animated fadeIn"
@@ -9,7 +9,12 @@
       <progress-bar :show-loader="showLoader" :loader-style="loaderStyle"/>
     </transition>
 
-    <router-view></router-view>
+    <div v-show="!isLoading">
+      <router-view :key="$route.fullPath"></router-view>
+    </div>
+
+    <div class="homepage-load" v-show="isLoading">Hold up</div>
+
     <Footer :isLoading="isLoading"></Footer>
   </div>
 </template>
@@ -59,6 +64,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.main-content {
+  padding-top: 70px;
+}
 .loader {
   position: fixed;
   top: 0;

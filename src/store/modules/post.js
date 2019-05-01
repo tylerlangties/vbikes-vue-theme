@@ -15,7 +15,8 @@ const createPostSlug = post => {
 // initial state
 const state = {
   recent: [],
-  loaded: false
+  loaded: false,
+  allPosts: []
 }
 
 // getters
@@ -32,14 +33,34 @@ const getters = {
     let recent = state.recent
     return recent.slice(0, limit)
   },
+  recentPostsLoaded: state => state.loaded,
 
-  recentPostsLoaded: state => state.loaded
+  getPostIndex: state => id => {
+    return state.recent.findIndex(post => post.id == id)
+  },
+  getPostByIndex: state => index => {
+    return state.recent[index]
+  },
+  getPostBySlug: state => slug => {
+    return state.recent.find(post => post.slug == slug)
+  }
 }
 
 // actions
 const actions = {
   getPosts({ commit }, { limit }) {
     api.getPosts(limit, posts => {
+      posts.map((post, i) => {
+        posts[i] = createPostSlug(post)
+      })
+
+      commit(types.STORE_FETCHED_POSTS, { posts })
+      commit(types.POSTS_LOADED, true)
+      commit(types.INCREMENT_LOADING_PROGRESS)
+    })
+  },
+  getAllPosts({ commit }) {
+    api.getAllPosts(posts => {
       posts.map((post, i) => {
         posts[i] = createPostSlug(post)
       })

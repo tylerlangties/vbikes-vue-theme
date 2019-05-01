@@ -2,10 +2,10 @@
   <div class="banner">
     <div class="banner-overlay">
       <div class="banner-content">
-        <h2 class="banner-content_title">{{title}}</h2>
+        <h2 class="banner-content_title" v-html="title"></h2>
         <p class="banner-content_breadcrumb">
-          <router-link :to="{ name: 'Home'}">Home</router-link>
-          -> {{title}}
+          <router-link :to="{ name: 'Home'}">Home</router-link>->
+          <span v-html="title"></span>
         </p>
       </div>
     </div>
@@ -15,8 +15,10 @@
 <script>
 export default {
   props: {
-    title: String,
-    required: true
+    title: {
+      type: String,
+      required: true
+    }
   },
   data() {
     return {};
@@ -32,7 +34,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* margin-top: 63px; */
   &-overlay {
     display: flex;
     justify-content: center;

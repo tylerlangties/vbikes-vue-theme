@@ -27,12 +27,12 @@ function load_vue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 
-function villagebikes_register_nav_menu() {
+function twentynineteen_register_nav_menu() {
 	register_nav_menus( array(
-		'primary_menu' => __( 'Primary Menu', 'wordpress-vue'),
+		'primary_menu' => __( 'Primary Menu', 'twentynineteen'),
 	) );
 }
-add_action( 'after_setup_theme', 'villagebikes_register_nav_menu', 0);
+add_action( 'after_setup_theme', 'twentynineteen', 0);
 
 function villagebikes_post_thumbnails() {
     add_theme_support( 'post-thumbnails' );

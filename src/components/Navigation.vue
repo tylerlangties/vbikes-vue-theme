@@ -2,12 +2,13 @@
   <div v-if="menu">
     <b-navbar class="nav" toggleable="lg" type="dark">
       <b-navbar-brand href="/">
-        <!-- <img src="http://localhost:8888/wp-content/uploads/2019/04/favicon-light.png" alt="vbikes"> -->
-        <object
-          type="image/svg+xml"
-          data="http://localhost:8888/wp-content/uploads/2019/04/favicon-light.svg"
-          class="logo"
-        ></object>
+        <router-link to="/">
+          <img
+            src="http://localhost:8888/wp-content/uploads/2019/04/favicon-light.png"
+            alt="vbikes"
+            class="brand-logo"
+          >
+        </router-link>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -62,14 +63,12 @@ a {
   color: white;
 }
 .nav {
-  /* position: fixed;
-  z-index: 20;
-  width: 100%; */
+  transition: opacity 200ms ease;
 }
 .navbar {
   background-color: #212121;
 }
-.logo {
+.brand-logo {
   max-height: 3rem;
   transition: all 200ms ease;
   &:hover {
